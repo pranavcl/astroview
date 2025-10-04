@@ -33,7 +33,7 @@ function infopanel_draw() {
 	textFont(normalFont);
     textSize(16);
 	text("    Image Name:Image1.jpeg",infopanel.x+padx/2, infopanel.y+padx*2-12);
-	image(milky_way, infopanel.x+padx/2, infopanel.y+padx*2.5-12, 16, 16);
+	image(milky_way, infopanel.x+padx/2, infopanel.y+padx*2.5-26, 16, 16);
 	text("    ImageSize :9.7MB ",infopanel.x+padx/2, infopanel.y+padx*2.5);
 	text("    Window Width: 10552 ",infopanel.x+padx/2, infopanel.y+padx*3.1);
 	text(" Window Height:2468 ",infopanel.x+padx/1.01, infopanel.y+padx*3.7);
