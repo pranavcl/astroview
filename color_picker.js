@@ -16,7 +16,7 @@ function draw() {
 
 function mouseDragged() {
   stroke(penColor);
-  strokeWeight(map(penSize, 0, 1, 1, 50)); // map 0–1 to a visible stroke range
+  strokeWeight(map(penSize, 0, 1, 1, 50)); 
   line(pmouseX, pmouseY, mouseX, mouseY);
 }
 
@@ -32,7 +32,7 @@ function color_picker_preload() {
 
   thicknessSlider = document.createElement("input");
   thicknessSlider.setAttribute("type", "range");
-  thicknessSlider.setAttribute("min", "0");
+  thicknessSlider.setAttribute("min", "0.1");
   thicknessSlider.setAttribute("max", "1");
   thicknessSlider.setAttribute("value", "0.5");
   thicknessSlider.setAttribute("step", "0.1");
@@ -51,7 +51,7 @@ function color_picker_setup() {
 
 function color_picker_update() {
   penColor = hexToRgb(myPicker.value);
-  penSize = parseFloat(thicknessSlider.value); // ✅ keep decimals
+  penSize = parseFloat(thicknessSlider.value); 
 }
 
 function color_picker_draw() {
@@ -59,7 +59,7 @@ function color_picker_draw() {
   textSize(24);
   noStroke();
   text("Color Picker:", 39, 99);
-  text("Thickness: " + penSize.toFixed(1), 21, 658); // ✅ show one decimal
+  text("Thickness: " + penSize.toFixed(1), 21, 658); 
 }
 
 function hexToRgb(hex) {
