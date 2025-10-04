@@ -1,3 +1,7 @@
+var zoomIn;
+var zoomOut;
+var zoomeset;
+
 function zoomtools_preload(){
 	zoomIn = loadImage('images/zoom-in.png');
 	zoomOut = loadImage('images/zoom-out.png');
@@ -5,7 +9,6 @@ function zoomtools_preload(){
 }
 
 function zoomtools_setup() {
-	image(zoomIn, 1360, 660);
 }
 
 function zoomtools_update() {
@@ -13,5 +16,5 @@ function zoomtools_update() {
 }
 
 function zoomtools_draw() {
-
+	image(zoomIn, 1360, 660);
 }
