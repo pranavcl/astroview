@@ -71,6 +71,7 @@ function preload() {
 
 function setup() {
 	createCanvas(windowWidth, windowHeight);
+	textAlign(LEFT, TOP);
 
 	prevX = mouseX;
 	prevY = mouseY;
@@ -170,7 +171,6 @@ function draw() {
 		var pt = viewer.viewport.viewportToViewerElementCoordinates(new OpenSeadragon.Point(texts[i].x, texts[i].y));
 		textSize(texts[i].fontSize*zoom);
 		fill(texts[i].color);
-		textAlign(LEFT, TOP);
 		text(texts[i].content, pt.x, pt.y);
 
 		var bbox = mainFont.textBounds(texts[i].content, pt.x, pt.y);
@@ -190,7 +190,7 @@ function draw() {
 	textFont("Helvetica");
 	fill(255); // white
 	textSize(18);
-	text("X: " + mouseX + " | Y: " + mouseY + "\nTool: " + tool, 10, 20);
+	text("X: " + mouseX + " | Y: " + mouseY + "\nTool: " + tool, 20, 10);
 
 	stroke(0);
 	strokeWeight(1);

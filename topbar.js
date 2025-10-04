@@ -14,7 +14,8 @@ function topbar_draw() {
 	textSize(30);
 	textFont(fontstyle);
 	textAlign(CENTER);
-	text("ASTROVIEW",windowWidth/2-20, 40);
+	text("ASTROVIEW",windowWidth/2-20, 5);
+	textAlign(LEFT, TOP);
 
 	topbar_update()
 }
