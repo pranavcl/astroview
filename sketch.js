@@ -6,8 +6,8 @@ var minZoom = 0.5;
 
 var toolbar = {};
 var tools = {};
-tools.cursor = {hover: false};
-tools.pen = {hover: false};
+tools.cursor = {hover: false, name:"Hand"};
+tools.pen = {hover: false, name:"Pen"};
 
 var toolWidth = 32;
 var toolHeight = 32;
@@ -85,15 +85,20 @@ function draw() {
 	tools.pen.x = toolbar.x + toolbar.width/6;
 	tools.pen.y = toolbar.y + toolbar.width/4 + toolHeight*2;
 
-	tools_array = [tools.cursor, tools.pen];
-
 	cursor();
-	for(var i = 0; i < tools_array.length; i++) {
-		if(detectCollision(mouseX, mouseY, 1, 1, tools_array[i].x, tools_array[i].y, toolWidth, toolHeight)) {
+	for(var i in tools) {
+		tools[i].hover = false;
+		if(detectCollision(mouseX, mouseY, 1, 1, tools[i].x, tools[i].y, toolWidth, toolHeight)) {
 			cursor(HAND);
-			fill(180);
+			fill(220);
 			noStroke();
-			circle(tools_array[i].x + toolWidth/2, tools_array[i].y + toolHeight/2, toolWidth*1.2);
+			circle(tools[i].x + toolWidth/2, tools[i].y + toolHeight/2, toolWidth*1.2);
+			tools[i].hover = true;
+		}
+		if(tool == tools[i].name) {
+			fill(220);
+			noStroke();
+			circle(tools[i].x + toolWidth/2, tools[i].y + toolHeight/2, toolWidth*1.2);
 		}
 	}
 
@@ -114,6 +119,9 @@ function windowResized() {
 }
 
 function mouseClicked() {
+	for(var i in tools) {
+		if(tools[i].hover) tool = tools[i].name;
+	}
 }
 
 function mousePressed() {
