@@ -1,5 +1,4 @@
-var text_size;
-
+var text_size; 
 function topbar_setup() {
 
 }
