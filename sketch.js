@@ -25,9 +25,6 @@ var currentStroke = [];
 var penColor = [255, 255, 255];
 var penSize = 10;
 
-var cameraX = 0;
-var cameraY = 0;
-
 // Fallback: 10552x2468
 var imageWidth = 10552;
 var imageHeight = 2468;
@@ -81,11 +78,7 @@ function update() {
 	zoomtools_update();
 	infopanel_update();
 	if(mouseDown && prevX != mouseX && prevY != mouseY && tool === "Hand") {
-		var delX = ((prevX - mouseX)*panSpeed/zoom)/imageWidth;
-		var delY = ((prevY - mouseY)*panSpeed/zoom)/imageHeight;
-		cameraX -= delX;
-		cameraY -= delY;
-		viewer.viewport.panBy(new OpenSeadragon.Point(delX, delY));
+		viewer.viewport.panBy(new OpenSeadragon.Point(((prevX - mouseX)/zoom)*0.001, ((prevY - mouseY)/zoom)*0.001));
 	}
 	prevX = mouseX;
 	prevY = mouseY;
@@ -96,7 +89,8 @@ function update() {
 	tools.pen.y = toolbar.y + toolbar.width/4 + toolHeight*2;
 
 	if(mouseDown && tool === "Pen" && mouseX > 100) {
-		currentStroke.push([mouseX-cameraX, mouseY-cameraY, penColor, penSize]);
+		var pt = viewer.viewport.pointFromPixel(new OpenSeadragon.Point(mouseX, mouseY));
+		currentStroke.push([pt.x, pt.y, penColor, penSize]);
 	}
 }
 
@@ -114,8 +108,9 @@ function draw() {
 	noFill();
 	for(var i = 0; i < currentStroke.length; i++) {
 		stroke(currentStroke[i][2][0], currentStroke[i][2][1], currentStroke[i][2][2]);
-		strokeWeight(currentStroke[i][3]);
-		vertex(currentStroke[i][0] + cameraX, currentStroke[i][1] + cameraY);
+		strokeWeight(currentStroke[i][3] * viewer.viewport.getZoom(true));
+		var pt = viewer.viewport.viewportToViewerElementCoordinates(new OpenSeadragon.Point(currentStroke[i][0], currentStroke[i][1]));
+		vertex(pt.x, pt.y);
 	}
 	endShape();
 
@@ -125,8 +120,9 @@ function draw() {
 		beginShape();
 		for(var j = 0; j < strokes[i].length; j++) {
 			stroke(strokes[i][j][2][0], strokes[i][j][2][1], strokes[i][j][2][2]);
-			strokeWeight(strokes[i][j][3]);
-			vertex(strokes[i][j][0] + cameraX, strokes[i][j][1] + cameraY);
+			strokeWeight(strokes[i][j][3] * viewer.viewport.getZoom(true));
+			var pt = viewer.viewport.viewportToViewerElementCoordinates(new OpenSeadragon.Point(strokes[i][j][0], strokes[i][j][1]));
+			vertex(pt.x, pt.y);
 		}
 		endShape();
 	}
@@ -135,10 +131,6 @@ function draw() {
 	fill(255); // white
 	textSize(16);
 	text("X: " + mouseX + " | Y: " + mouseY + "\nTool: " + tool, 10, 20);
-
-	for(var i = 0; i < strokes.length; i++) {
-		
-	}
 
 	stroke(0);
 	strokeWeight(1);
