@@ -39,7 +39,6 @@ function zoomtools_draw() {
 	image(zoomImages.zoomOut,zoomTools.zoomOut.x, zoomTools.zoomOut.y);
 	image(zoomImages.zoomReset,zoomTools.zoomReset.x, zoomTools.zoomReset.y);
 
-	cursor();
 	if (tool != "Pen") {
 		for(var i in zoomTools) {
 		zoomTools[i].hover = false;
