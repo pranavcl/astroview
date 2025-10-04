@@ -63,7 +63,7 @@ function draw() {
 
 	rect(toolbar.x, toolbar.y, toolbar.width, toolbar.height);
 	image(images.cursor, toolbar.x + toolbar.width/6, toolbar.y + toolbar.width/4);
-
+	
 	zoomtools_draw();
 }
 
