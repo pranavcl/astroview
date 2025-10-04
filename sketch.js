@@ -12,11 +12,25 @@ tools.pen = {hover: false, name:"Pen"};
 var toolWidth = 32;
 var toolHeight = 32;
 
+var panSpeed = 4;
+
 var images = {};
 var mouseDown = false;
 
 var prevX;
 var prevY;
+
+var strokes = [];
+var currentStroke = [];
+var penColor = [255, 255, 255];
+var penSize = 10;
+
+var cameraX = 0;
+var cameraY = 0;
+
+// Fallback: 10552x2468
+var imageWidth = 10552;
+var imageHeight = 2468;
 
 var viewer = OpenSeadragon({
 	id: "openseadragon1",
@@ -57,15 +71,33 @@ function setup() {
 	toolbar.y = windowHeight/2 - toolbar.height/2;
 
 	zoomtools_setup();
+	imageWidth = viewer.world.getItemAt(0).source.dimensions.x;
+	imageHeight = viewer.world.getItemAt(0).source.dimensions.y;
+
+	infopanel_setup();
 }
 
 function update() {
 	zoomtools_update();
-	if(mouseDown && prevX != mouseX && prevY != mouseY) {
-		viewer.viewport.panBy(new OpenSeadragon.Point(0.001*(prevX - mouseX)/zoom, 0.001*(prevY - mouseY)/zoom));
+	infopanel_update();
+	if(mouseDown && prevX != mouseX && prevY != mouseY && tool === "Hand") {
+		var delX = ((prevX - mouseX)*panSpeed/zoom)/imageWidth;
+		var delY = ((prevY - mouseY)*panSpeed/zoom)/imageHeight;
+		cameraX -= delX;
+		cameraY -= delY;
+		viewer.viewport.panBy(new OpenSeadragon.Point(delX, delY));
 	}
 	prevX = mouseX;
 	prevY = mouseY;
+
+	tools.cursor.x = toolbar.x + toolbar.width/6;
+	tools.cursor.y = toolbar.y + toolbar.width/4;
+	tools.pen.x = toolbar.x + toolbar.width/6;
+	tools.pen.y = toolbar.y + toolbar.width/4 + toolHeight*2;
+
+	if(mouseDown && tool === "Pen" && mouseX > 100) {
+		currentStroke.push([mouseX-cameraX, mouseY-cameraY, penColor, penSize]);
+	}
 }
 
 function draw() {
@@ -73,19 +105,44 @@ function draw() {
 
 	// background(0);
 	clear();
+
+	// fill(255, 255, 255, 0.8);
+
+	// ================== DRAW CURRENT STROKE ================== 
+
+	beginShape();
+	noFill();
+	for(var i = 0; i < currentStroke.length; i++) {
+		stroke(currentStroke[i][2][0], currentStroke[i][2][1], currentStroke[i][2][2]);
+		strokeWeight(currentStroke[i][3]);
+		vertex(currentStroke[i][0] + cameraX, currentStroke[i][1] + cameraY);
+	}
+	endShape();
+
+	// ================== DRAW ALL STROKES ================== 
+
+	for(var i = 0; i < strokes.length; i++) {
+		beginShape();
+		for(var j = 0; j < strokes[i].length; j++) {
+			stroke(strokes[i][j][2][0], strokes[i][j][2][1], strokes[i][j][2][2]);
+			strokeWeight(strokes[i][j][3]);
+			vertex(strokes[i][j][0] + cameraX, strokes[i][j][1] + cameraY);
+		}
+		endShape();
+	}
+	noStroke();
+
 	fill(255); // white
 	textSize(16);
 	text("X: " + mouseX + " | Y: " + mouseY + "\nTool: " + tool, 10, 20);
 
-	// fill(255, 255, 255, 0.8);
+	for(var i = 0; i < strokes.length; i++) {
+		
+	}
 
+	stroke(0);
+	strokeWeight(1);
 	rect(toolbar.x, toolbar.y, toolbar.width, toolbar.height);
-
-	tools.cursor.x = toolbar.x + toolbar.width/6;
-	tools.cursor.y = toolbar.y + toolbar.width/4;
-
-	tools.pen.x = toolbar.x + toolbar.width/6;
-	tools.pen.y = toolbar.y + toolbar.width/4 + toolHeight*2;
 
 	cursor();
 	for(var i in tools) {
@@ -104,12 +161,11 @@ function draw() {
 		}
 	}
 
-	stroke(0);
-
 	image(images.cursor, tools.cursor.x, tools.cursor.y);
 	image(images.pen, tools.pen.x, tools.pen.y);
 
 	zoomtools_draw();
+	infopanel_draw();
 }
 
 function windowResized() {
@@ -132,6 +188,8 @@ function mousePressed() {
 
 function mouseReleased() {
 	mouseDown = false;
+	strokes.push(currentStroke);
+	currentStroke = [];
 }
 
 function mouseWheel(event) {
