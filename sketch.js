@@ -42,6 +42,7 @@ function setup() {
 }
 
 function update() {
+	zoomtools_update();
 	if(mouseDown && prevX != mouseX && prevY != mouseY) {
 		viewer.viewport.panBy(new OpenSeadragon.Point(0.001*(prevX - mouseX)/zoom, 0.001*(prevY - mouseY)/zoom));
 	}
@@ -62,6 +63,8 @@ function draw() {
 
 	rect(toolbar.x, toolbar.y, toolbar.width, toolbar.height);
 	image(images.cursor, toolbar.x + toolbar.width/6, toolbar.y + toolbar.width/4);
+
+	zoomtools_draw();
 }
 
 function windowResized() {
