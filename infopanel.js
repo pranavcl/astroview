@@ -21,7 +21,7 @@ function infopanel_update() {
 }
 
 function infopanel_draw() {
-	fill(255,255,255,235);
+	fill(255,255,255,190);
 	infopanel.x = windowWidth-infopanel.width;
 	infopanel.y = windowHeight/2-infopanel.height/2;
 	rect(infopanel.x, infopanel.y, infopanel.width, infopanel.height-160);
@@ -35,7 +35,7 @@ function infopanel_draw() {
 	text("    Image Name:Image1.jpeg",infopanel.x+padx/2, infopanel.y+padx*2-12);
 	image(milky_way, infopanel.x+padx/2, infopanel.y+padx*2.5-26, 16, 16);
 	text("    ImageSize :9.7MB ",infopanel.x+padx/2, infopanel.y+padx*2.5);
-	text("    Window Width: 10552 ",infopanel.x+padx/2, infopanel.y+padx*3.1);
-	text(" Window Height:2468 ",infopanel.x+padx/1.01, infopanel.y+padx*3.7);
+	text("    Window Width: 10552 bytes",infopanel.x+padx/2, infopanel.y+padx*3.1);
+	text(" Window Height:2468 bytes",infopanel.x+padx/1.01, infopanel.y+padx*3.7);
 	infopanel_update();
 }
