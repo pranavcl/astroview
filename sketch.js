@@ -11,6 +11,7 @@ tools.pen = {hover: false, name:"Pen"};
 tools.eraser = {hover: false, name:"Eraser"};
 tools.text = {hover: false, name:"Text"};
 tools.line = {hover: false, name:"Line"};
+tools.rectangle = {hover: false, name:"Rectangle"};
 
 var toolWidth = 32;
 var toolHeight = 32;
@@ -36,6 +37,9 @@ var texts = [];
 // Fallback: 10552x2468
 var imageWidth = 10552;
 var imageHeight = 2468;
+
+var linex = 0;
+var liney = 0;
 
 var viewer = OpenSeadragon({
 	id: "openseadragon1",
@@ -63,6 +67,7 @@ function preload() {
 	images.eraser = loadImage("/images/eraser.png");
 	images.text = loadImage("/images/text.png");
 	images.line = loadImage("/images/line.png");
+	images.rectangle = loadImage("/images/rectangle.png");
 
 	mainFont = loadFont("/fonts/ARIAL.ttf");
 
@@ -103,6 +108,11 @@ function update() {
 	prevX = mouseX;
 	prevY = mouseY;
 
+	if(tool === "Line" && mouseDown && !linex && !liney) {
+		linex = mouseX;
+		liney = mouseY;
+	}
+
 	tools.cursor.x = toolbar.x + toolbar.width/6;
 	tools.cursor.y = toolbar.y + toolbar.width/4;
 	tools.pen.x = tools.cursor.x;
@@ -113,6 +123,8 @@ function update() {
 	tools.text.y = tools.eraser.y + toolHeight*2;
 	tools.line.x = tools.cursor.x;
 	tools.line.y = tools.text.y + toolHeight*2;
+	tools.rectangle.x = tools.cursor.x;
+	tools.rectangle.y = tools.line.y + toolHeight*2;
 
 	if(mouseDown && tool === "Pen" && mouseX > 100) {
 		var pt = viewer.viewport.pointFromPixel(new OpenSeadragon.Point(mouseX, mouseY));
@@ -141,10 +153,21 @@ function draw() {
 
 	// fill(255, 255, 255, 0.8);
 
+	noFill();
+
+	// ================== DRAW CURRENT LINE ================== 
+	if(tool === "Line" && linex && liney) {
+		stroke(255);
+		beginShape();
+		vertex(linex, liney);
+		vertex(mouseX, mouseY);
+		endShape();
+	}
+
+
 	// ================== DRAW CURRENT STROKE ================== 
 
 	beginShape();
-	noFill();
 	for(var i = 0; i < currentStroke.length; i++) {
 		stroke(currentStroke[i][2][0], currentStroke[i][2][1], currentStroke[i][2][2]);
 		strokeWeight(currentStroke[i][3] * viewer.viewport.getZoom(true));
@@ -193,7 +216,7 @@ function draw() {
 	textFont("Helvetica");
 	fill(255); // white
 	textSize(18);
-	text("X: " + mouseX + " | Y: " + mouseY + "\nTool: " + tool, 20, 10);
+	text("X: " + mouseX + " | Y: " + mouseY + "\nTool: " + tool, 20, windowHeight-50);
 
 	stroke(0);
 	strokeWeight(1);
@@ -220,6 +243,7 @@ function draw() {
 	image(images.eraser, tools.eraser.x, tools.eraser.y);
 	image(images.text, tools.text.x, tools.text.y);
 	image(images.line, tools.line.x, tools.line.y);
+	image(images.rectangle, tools.rectangle.x, tools.rectangle.y);
 
 	zoomtools_draw();
 	infopanel_draw();
@@ -270,7 +294,14 @@ function mousePressed() {
 
 function mouseReleased() {
 	mouseDown = false;
-	strokes.push(currentStroke);
+	if(tool === "Line") {
+		var pt1 = viewer.viewport.pointFromPixel(new OpenSeadragon.Point(linex, liney));
+		var pt2 = viewer.viewport.pointFromPixel(new OpenSeadragon.Point(mouseX, mouseY));
+		currentStroke.push([pt1.x, pt1.y, penColor, penSize]);
+		currentStroke.push([pt2.x, pt2.y, penColor, penSize]);
+		linex = liney = 0;
+	}
+	if(currentStroke.length != 0) strokes.push(currentStroke);
 	currentStroke = [];
 }
 
