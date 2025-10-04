@@ -8,6 +8,8 @@ var toolbar = {};
 var tools = {};
 tools.cursor = {hover: false, name:"Hand"};
 tools.pen = {hover: false, name:"Pen"};
+tools.eraser = {hover: false, name:"Eraser"};
+tools.text = {hover: false, name:"Text"};
 
 var toolWidth = 32;
 var toolHeight = 32;
@@ -24,6 +26,10 @@ var strokes = [];
 var currentStroke = [];
 var penColor = [255, 255, 255];
 var penSize = 10;
+
+var fontSize = 16;
+
+var texts = [];
 
 // Fallback: 10552x2468
 var imageWidth = 10552;
@@ -52,6 +58,8 @@ function detectCollision(x1, y1, w1, h1, x2, y2, w2, h2) {
 function preload() {
 	images.cursor = loadImage("/images/cursor.png");
 	images.pen = loadImage("/images/pen.png");
+	images.eraser = loadImage("/images/eraser.png");
+	images.text = loadImage("/images/text.png");
 
 	zoomtools_preload();
 }
@@ -88,12 +96,28 @@ function update() {
 
 	tools.cursor.x = toolbar.x + toolbar.width/6;
 	tools.cursor.y = toolbar.y + toolbar.width/4;
-	tools.pen.x = toolbar.x + toolbar.width/6;
-	tools.pen.y = toolbar.y + toolbar.width/4 + toolHeight*2;
+	tools.pen.x = tools.cursor.x;
+	tools.pen.y = tools.cursor.y + toolHeight*2;
+	tools.eraser.x = tools.cursor.x;
+	tools.eraser.y = tools.pen.y + toolHeight*2;
+	tools.text.x = tools.cursor.x;
+	tools.text.y = tools.eraser.y + toolHeight*2;
 
 	if(mouseDown && tool === "Pen" && mouseX > 100) {
 		var pt = viewer.viewport.pointFromPixel(new OpenSeadragon.Point(mouseX, mouseY));
 		currentStroke.push([pt.x, pt.y, penColor, penSize]);
+	}
+
+	if(tool === "Eraser" && mouseDown) {
+		for(var i=0; i < strokes.length; i++) {
+			for(var j = 0; j < strokes[i].length; j++) {
+				var pt = viewer.viewport.viewportToViewerElementCoordinates(new OpenSeadragon.Point(strokes[i][j][0], strokes[i][j][1]));
+				if(dist(mouseX, mouseY, pt.x, pt.y) < penSize*2) {
+					strokes.splice(i, 1);
+					break;
+				}
+			}
+		}
 	}
 }
 
@@ -131,8 +155,25 @@ function draw() {
 	}
 	noStroke();
 
+	// ================== DRAW TEXTS ==================  
+
+	for(var i = 0; i < texts.length; i++) {
+		var pt = viewer.viewport.viewportToViewerElementCoordinates(new OpenSeadragon.Point(texts[i].x, texts[i].y));
+		textSize(texts[i].fontSize*zoom);
+		fill(texts[i].color);
+		textAlign(LEFT, TOP);
+		text(texts[i].content, pt.x, pt.y);
+
+		if(dist(mouseX, mouseY, pt.x, pt.y) < texts[i].fontSize) {
+			noFill();
+			stroke(0, 0, 255);
+			rect(pt.x, pt.y, texts[i].fontSize*texts[i].content.length*zoom*0.5, texts[i].fontSize*zoom);
+		}
+	}
+
+	textFont("Helvetica");
 	fill(255); // white
-	textSize(16);
+	textSize(18);
 	text("X: " + mouseX + " | Y: " + mouseY + "\nTool: " + tool, 10, 20);
 
 	stroke(0);
@@ -158,6 +199,8 @@ function draw() {
 
 	image(images.cursor, tools.cursor.x, tools.cursor.y);
 	image(images.pen, tools.pen.x, tools.pen.y);
+	image(images.eraser, tools.eraser.x, tools.eraser.y);
+	image(images.text, tools.text.x, tools.text.y);
 
 	zoomtools_draw();
 	infopanel_draw();
@@ -175,6 +218,29 @@ function windowResized() {
 function mouseClicked() {
 	for(var i in tools) {
 		if(tools[i].hover) tool = tools[i].name;
+	}
+
+	if(tool === "Text" && mouseX > 100) {
+		var found = false;
+		for(var i = 0; i < texts.length; i++) {
+			if(detectCollision(mouseX, mouseY, 1, 1, texts[i].x, texts[i].y, texts[i].content.length*texts[i].fontSize, texts[i].fontSize)) {
+				var newText = prompt("Change annotation:");
+				if(!newText) return;
+				texts[i].content = newText;
+				found = true;
+			}
+		}
+		if(!found) {
+			var pt = viewer.viewport.pointFromPixel(new OpenSeadragon.Point(mouseX, mouseY));
+			var newText = {};
+			newText.content = prompt("New annotation:");
+			if(!newText.content) return;
+			newText.x = pt.x;
+			newText.y = pt.y;
+			newText.fontSize = fontSize;
+			newText.color = penColor;
+			texts.push(newText);
+		}
 	}
 }
 
