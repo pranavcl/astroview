@@ -78,7 +78,7 @@ function draw() {
 	// fill(255, 255, 255, 0.8);
 
 	rect(toolbar.x, toolbar.y, toolbar.width, toolbar.height);
-	
+
 	tools.cursor.x = toolbar.x + toolbar.width/6;
 	tools.cursor.y = toolbar.y + toolbar.width/4;
 
