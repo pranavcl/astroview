@@ -41,6 +41,8 @@ function detectCollision(x1, y1, w1, h1, x2, y2, w2, h2) {
 function preload() {
 	images.cursor = loadImage("/images/cursor.png");
 	images.pen = loadImage("/images/pen.png");
+
+	zoomtools_preload();
 }
 
 function setup() {
