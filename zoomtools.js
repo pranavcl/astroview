@@ -1,6 +1,6 @@
-// let zoomIn;
-// let zoomOut;
-// let resetZoom;
+function zoomtools_setup() {
+
+}
 
 function zoomtools_update() {
 
