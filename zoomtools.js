@@ -1,12 +1,18 @@
+var zoomTools = {}
+zoomTools.zoomIn = {hover:false, name:"zoomIn"}
+zoomTools.zoomOut = {hover:false, name:"zoomOut"}
+zoomTools.zoomReset = {hover:false, name:"zoomReset"}
+
+var zoomImages = {}
+
 var zoomIn;
 var zoomOut;
 var zoomeset;
 
 function zoomtools_preload(){
-	zoomIn = loadImage('images/zoom-in.png');
-	zoomOut = loadImage('images/zoom-out.png');
-	zoomReset = loadImage('images/zoom_reset.png');
-
+	zoomImages.zoomIn = loadImage('images/zoom-in.png');
+	zoomImages.zoomOut = loadImage('images/zoom-out.png');
+	zoomImages.zoomReset = loadImage('images/zoom_reset.png');
 }
 
 function zoomtools_setup() {
@@ -22,9 +28,36 @@ function zoomtools_draw() {
 	fill(255,255,255,200);
 	rect(windowWidth-190,windowHeight-100,130,50);
 
-	image(zoomIn,windowWidth-180,windowHeight-90);
-	image(zoomOut,windowWidth-140, windowHeight-90);
-	image(zoomReset,windowWidth-100, windowHeight-90);
+	zoomTools.zoomIn.x = windowWidth-180;
+	zoomTools.zoomIn.y = windowHeight-90;
+	zoomTools.zoomOut.x = windowWidth-140;
+	zoomTools.zoomOut.y = windowHeight-90;
+	zoomTools.zoomReset.x = windowWidth-100;
+	zoomTools.zoomReset.y = windowHeight-90;
+
+	image(zoomImages.zoomIn,zoomTools.zoomIn.x,zoomTools.zoomIn.y);
+	image(zoomImages.zoomOut,zoomTools.zoomOut.x, zoomTools.zoomOut.y);
+	image(zoomImages.zoomReset,zoomTools.zoomReset.x, zoomTools.zoomReset.y);
+
+	cursor();
+	if (tool != "Pen") {
+		for(var i in zoomTools) {
+		zoomTools[i].hover = false;
+		if(detectCollision(mouseX, mouseY, 1, 1, zoomTools[i].x, zoomTools[i].y, 32, 32)) {
+			cursor(HAND);
+			fill(255,255,255,150);
+			noStroke();
+			square(zoomTools[i].x - 4, zoomTools[i].y - 4, 36);
+			zoomTools[i].hover = true;
+		}
+		if(tool == zoomTools[i].name) {
+			fill(255,255,255,100);
+			noStroke();
+			square(zoomTools[i].x - 4, zoomTools[i].y - 4, 36);
+		}
+		}
+	}
+
 
 	if(mouseDown && tool === "Hand") {
 		if(detectCollision(mouseX, mouseY, 1, 1, (windowWidth-180), (windowHeight-90), 32, 32)) {
