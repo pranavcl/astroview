@@ -230,8 +230,7 @@ function draw() {
 	textSize(18);
 	var pt = viewer.viewport.pointFromPixel(new OpenSeadragon.Point(mouseX, mouseY));
 	text("Zoom level: " + viewer.viewport.getZoom() + "\nImage X: " + parseInt(pt.x*imageWidth) + " | Image Y: " + parseInt(pt.y*imageWidth) + "\nX: " + mouseX + " | Y: " + mouseY + "\nTool: " + tool, 20, windowHeight-100);
-
-	stroke(0);
+sk
 	rect(toolbar.x, toolbar.y, toolbar.width, toolbar.height,5);
 
 	for(var i in tools) {
