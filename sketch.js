@@ -160,7 +160,7 @@ function draw() {
 
 	noFill();
 
-	// ================== DRAW CURRENT LINE ================== 
+	// ================== DRAW CURRENT LINE ==================
 	if(tool === "Line" && linex && liney) {
 		stroke(255);
 		beginShape();
@@ -177,7 +177,7 @@ function draw() {
 	}
 
 
-	// ================== DRAW CURRENT STROKE ================== 
+	// ================== DRAW CURRENT STROKE ==================
 
 	beginShape();
 	for(var i = 0; i < currentStroke.length; i++) {
@@ -188,7 +188,7 @@ function draw() {
 	}
 	endShape();
 
-	// ================== DRAW ALL STROKES ================== 
+	// ================== DRAW ALL STROKES ==================
 
 	for(var i = 0; i < strokes.length; i++) {
 		beginShape();
@@ -202,7 +202,7 @@ function draw() {
 	}
 	noStroke();
 
-	// ================== DRAW TEXTS ==================  
+	// ================== DRAW TEXTS ==================
 
 	textFont(mainFont);
 	for(var i = 0; i < texts.length; i++) {
@@ -226,14 +226,14 @@ function draw() {
 	noStroke();
 
 	textFont("Helvetica");
-	fill(255); // white
+	fill(255,255,255,200); // white
 	textSize(18);
 	var pt = viewer.viewport.pointFromPixel(new OpenSeadragon.Point(mouseX, mouseY));
 	text("Zoom level: " + viewer.viewport.getZoom() + "\nImage X: " + parseInt(pt.x*imageWidth) + " | Image Y: " + parseInt(pt.y*imageWidth) + "\nX: " + mouseX + " | Y: " + mouseY + "\nTool: " + tool, 20, windowHeight-100);
 
 	stroke(0);
 	strokeWeight(1);
-	rect(toolbar.x, toolbar.y, toolbar.width, toolbar.height);
+	rect(toolbar.x, toolbar.y, toolbar.width, toolbar.height,5);
 
 	for(var i in tools) {
 		tools[i].hover = false;
@@ -275,7 +275,7 @@ function windowResized() {
 
 function mouseClicked() {
 	for(var i in tools) {
-		if(tools[i].hover) 
+		if(tools[i].hover)
 		if(tools[i].name === "Ellipse") return alert("Not implemented yet!");
 		else tool = tools[i].name;
 	}
