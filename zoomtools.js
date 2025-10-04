@@ -26,7 +26,7 @@ function zoomtools_draw() {
 	image(zoomOut,windowWidth-140, windowHeight-90);
 	image(zoomReset,windowWidth-100, windowHeight-90);
 
-	if(mouseDown){
+	if(mouseDown && tool === "Hand") {
 		if(detectCollision(mouseX, mouseY, 1, 1, (windowWidth-180), (windowHeight-90), 32, 32)) {
 			click_zoomIn();
 		}
