@@ -1,0 +1,34 @@
+<script src="starfield.js"></script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perseverance Rover Images</title>
+    <link rel="stylesheet" href="../styles.css">
+    <style>
+        body { background: #232526; color: #fff; font-family: 'Space Mono', monospace; }
+        .gallery { display: flex; flex-wrap: wrap; gap: 32px; justify-content: center; margin-top: 48px; }
+        .gallery-item { background: #2d3142; border-radius: 12px; padding: 16px; cursor: pointer; transition: box-shadow 0.2s; }
+        .gallery-item:hover { box-shadow: 0 4px 24px #4f5d75; }
+        .gallery-img { width: 220px; height: 160px; object-fit: cover; border-radius: 8px; }
+        .gallery-title { margin-top: 12px; font-size: 1.1rem; text-align: center; }
+    </style>
+    <script>
+        // No index.html linking for Perseverance
+    </script>
+</head>
+<body>
+    <h1 style="text-align:center; margin-top:32px;">Perseverance Rover Images</h1>
+    <div class="gallery">
+        <div class="gallery-item">
+            <img class="gallery-img" src="images/perseverance1.jpg" alt="Perseverance Image 1">
+            <div class="gallery-title">Perseverance Image 1</div>
+        </div>
+        <div class="gallery-item">
+            <img class="gallery-img" src="images/perseverance2.jpg" alt="Perseverance Image 2">
+            <div class="gallery-title">Perseverance Image 2</div>
+        </div>
+    </div>
+</body>
+</html>
