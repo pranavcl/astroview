@@ -6,12 +6,14 @@ var minZoom = 0.5;
 
 var toolbar = {};
 var tools = {};
+tools.length = 7;
 tools.cursor = {hover: false, name:"Hand"};
 tools.pen = {hover: false, name:"Pen"};
 tools.eraser = {hover: false, name:"Eraser"};
 tools.text = {hover: false, name:"Text"};
 tools.line = {hover: false, name:"Line"};
 tools.rectangle = {hover: false, name:"Rectangle"};
+tools.ellipse = {hover: false, name:"Ellipse"};
 
 var toolWidth = 32;
 var toolHeight = 32;
@@ -68,6 +70,7 @@ function preload() {
 	images.text = loadImage("/images/text.png");
 	images.line = loadImage("/images/line.png");
 	images.rectangle = loadImage("/images/rectangle.png");
+	images.ellipse = loadImage("/images/ellipse.png");
 
 	mainFont = loadFont("/fonts/ARIAL.ttf");
 
@@ -83,7 +86,7 @@ function setup() {
 	prevY = mouseY;
 
 	toolbar.width = 48;
-	toolbar.height = windowHeight/2;
+	toolbar.height = toolHeight*tools.length*2;
 	toolbar.x = toolbar.width;
 	toolbar.y = windowHeight/2 - toolbar.height/2;
 
@@ -108,7 +111,7 @@ function update() {
 	prevX = mouseX;
 	prevY = mouseY;
 
-	if(tool === "Line" && mouseDown && !linex && !liney) {
+	if((tool === "Line" || tool === "Rectangle") && mouseDown && !linex && !liney) {
 		linex = mouseX;
 		liney = mouseY;
 	}
@@ -125,6 +128,8 @@ function update() {
 	tools.line.y = tools.text.y + toolHeight*2;
 	tools.rectangle.x = tools.cursor.x;
 	tools.rectangle.y = tools.line.y + toolHeight*2;
+	tools.ellipse.x = tools.cursor.x;
+	tools.ellipse.y = tools.rectangle.y + toolHeight*2;
 
 	if(mouseDown && tool === "Pen" && mouseX > 100) {
 		var pt = viewer.viewport.pointFromPixel(new OpenSeadragon.Point(mouseX, mouseY));
@@ -162,6 +167,13 @@ function draw() {
 		vertex(linex, liney);
 		vertex(mouseX, mouseY);
 		endShape();
+	}
+
+
+	// ================== DRAW CURRENT RECTANGLE ==================
+	if(tool === "Rectangle" && linex && liney) {
+		stroke(255);
+		rect(linex, liney, mouseX - linex, mouseY - liney);
 	}
 
 
@@ -216,7 +228,8 @@ function draw() {
 	textFont("Helvetica");
 	fill(255); // white
 	textSize(18);
-	text("X: " + mouseX + " | Y: " + mouseY + "\nTool: " + tool, 20, windowHeight-50);
+	var pt = viewer.viewport.pointFromPixel(new OpenSeadragon.Point(mouseX, mouseY));
+	text("Zoom level: " + viewer.viewport.getZoom() + "\nImage X: " + parseInt(pt.x*imageWidth) + " | Image Y: " + parseInt(pt.y*imageWidth) + "\nX: " + mouseX + " | Y: " + mouseY + "\nTool: " + tool, 20, windowHeight-100);
 
 	stroke(0);
 	strokeWeight(1);
@@ -244,6 +257,7 @@ function draw() {
 	image(images.text, tools.text.x, tools.text.y);
 	image(images.line, tools.line.x, tools.line.y);
 	image(images.rectangle, tools.rectangle.x, tools.rectangle.y);
+	image(images.ellipse, tools.ellipse.x, tools.ellipse.y);
 
 	zoomtools_draw();
 	infopanel_draw();
@@ -254,14 +268,16 @@ function draw() {
 function windowResized() {
 	resizeCanvas(windowWidth, windowHeight);
 	toolbar.width = 48;
-	toolbar.height = windowHeight/2;
+	toolbar.height = toolHeight*tools.length*2;
 	toolbar.x = toolbar.width;
 	toolbar.y = windowHeight/2 - toolbar.height/2;
 }
 
 function mouseClicked() {
 	for(var i in tools) {
-		if(tools[i].hover) tool = tools[i].name;
+		if(tools[i].hover) 
+		if(tools[i].name === "Ellipse") return alert("Not implemented yet!");
+		else tool = tools[i].name;
 	}
 
 	if(tool === "Text" && mouseX > 100) {
@@ -299,6 +315,17 @@ function mouseReleased() {
 		var pt2 = viewer.viewport.pointFromPixel(new OpenSeadragon.Point(mouseX, mouseY));
 		currentStroke.push([pt1.x, pt1.y, penColor, penSize]);
 		currentStroke.push([pt2.x, pt2.y, penColor, penSize]);
+		linex = liney = 0;
+	}
+	if(tool === "Rectangle") {
+		var pt1 = viewer.viewport.pointFromPixel(new OpenSeadragon.Point(linex, liney));
+		var pt2 = viewer.viewport.pointFromPixel(new OpenSeadragon.Point(mouseX, liney));
+		var pt3 = viewer.viewport.pointFromPixel(new OpenSeadragon.Point(mouseX, mouseY));
+		var pt4 = viewer.viewport.pointFromPixel(new OpenSeadragon.Point(linex, mouseY));
+		var pts = [pt1, pt2, pt3, pt4, pt1];
+		for(var i = 0; i < pts.length; i++) {
+			currentStroke.push([pts[i].x, pts[i].y, penColor, penSize]);
+		}
 		linex = liney = 0;
 	}
 	if(currentStroke.length != 0) strokes.push(currentStroke);
