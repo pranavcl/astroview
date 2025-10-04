@@ -43,6 +43,11 @@ var imageHeight = 2468;
 var linex = 0;
 var liney = 0;
 
+const RA_TOP_LEFT = 10.684;         
+const DEC_TOP_LEFT = 41.269;        
+const RA_BOTTOM_RIGHT = 12.184;     
+const DEC_BOTTOM_RIGHT = 40.269;
+
 var viewer = OpenSeadragon({
 	id: "openseadragon1",
 	prefixUrl: "/openseadragon/images/",
@@ -229,7 +234,18 @@ function draw() {
 	fill(255,255,255,200); // white
 	textSize(18);
 	var pt = viewer.viewport.pointFromPixel(new OpenSeadragon.Point(mouseX, mouseY));
-	text("Zoom level: " + viewer.viewport.getZoom() + "\nImage X: " + parseInt(pt.x*imageWidth) + " | Image Y: " + parseInt(pt.y*imageWidth) + "\nX: " + mouseX + " | Y: " + mouseY + "\nTool: " + tool, 20, windowHeight-100);
+	let imgX = pt.x * imageWidth;
+	let imgY = pt.y * imageHeight;
+	let { ra, dec } = imageXYtoRaDec(imgX, imgY);
+
+	text(
+	"Zoom level: " + viewer.viewport.getZoom().toFixed(2) +
+	"\nImage X: " + parseInt(imgX) + " | Image Y: " + parseInt(imgY) +
+	"\nRA: " + degToHMS(ra) + " | Dec: " + degToDMS(dec)+
+	"\nX: " + mouseX + " | Y: " + mouseY +
+	"\nTool: " + tool,
+	20, windowHeight - 120
+	);
 	rect(toolbar.x, toolbar.y, toolbar.width, toolbar.height,5);
 
 	for(var i in tools) {
@@ -337,4 +353,27 @@ function mouseWheel(event) {
 	if(zoom < minZoom) zoom = minZoom;
 
 	viewer.viewport.zoomTo(zoom);
+}
+
+function imageXYtoRaDec(x, y) {
+    const ra = RA_TOP_LEFT + (x / imageWidth) * (RA_BOTTOM_RIGHT - RA_TOP_LEFT);
+    const dec = DEC_TOP_LEFT + (y / imageHeight) * (DEC_BOTTOM_RIGHT - DEC_TOP_LEFT);
+    return { ra, dec };
+}
+
+function degToHMS(deg) {
+    const totalHours = deg / 15;
+    const h = Math.floor(totalHours);
+    const m = Math.floor((totalHours - h) * 60);
+    const s = (((totalHours - h) * 60 - m) * 60).toFixed(2);
+    return `${h}h ${m}m ${s}s`;
+}
+
+function degToDMS(deg) {
+    const sign = deg >= 0 ? "+" : "-";
+    const absDeg = Math.abs(deg);
+    const d = Math.floor(absDeg);
+    const m = Math.floor((absDeg - d) * 60);
+    const s = (((absDeg - d) * 60 - m) * 60).toFixed(2);
+    return `${sign}${d}° ${m}' ${s}"`;
 }
