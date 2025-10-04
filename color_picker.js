@@ -1,53 +1,71 @@
 var myPicker;
-var myThickness;
+var thicknessSlider;
+var penColor = [255, 255, 255];
+var penSize = 5;
+
+function setup() {
+  createCanvas(windowWidth, windowHeight);
+  color_picker_setup();
+  background(0); 
+}
+
+function draw() {
+  color_picker_update();
+  color_picker_draw();
+}
+
+function mouseDragged() {
+  stroke(penColor);
+  strokeWeight(penSize);
+  line(pmouseX, pmouseY, mouseX, mouseY);
+}
 
 function color_picker_preload() {
     myPicker = document.createElement("input");
     myPicker.setAttribute("type", "color");
 	myPicker.value = "#FFFFFF";
     myPicker.style.position = "fixed";
-    myPicker.style.top = "100px";
-    myPicker.style.left = "47px";
-    myPicker.style.zIndex = "300";
+    myPicker.style.top = "142px";
+    myPicker.style.left = "50px";
+    myPicker.style.zIndex = "1000";
     document.body.appendChild(myPicker);
-    return myPicker;
+    
+	thicknessSlider = document.createElement("input");
+    thicknessSlider.setAttribute("type", "range");
+    thicknessSlider.setAttribute("min", "1");
+    thicknessSlider.setAttribute("max", "5");
+    thicknessSlider.setAttribute("value", "1");
+	thicknessSlider.setAttribute("step","0.1");
+    thicknessSlider.style.position = "fixed";
+    thicknessSlider.style.top = "690px";
+    thicknessSlider.style.left = "20px";
+    thicknessSlider.style.zIndex = "1000";
+    document.body.appendChild(thicknessSlider);
+
+	return {thicknessSlider, myPicker};
 }
-
-function pen_thickness() {
-	myThickness
-}
-
-function hexToRgb(hex) {
-	hex = hex.replace(/^#/, '');
-
-	if (hex.length === 3) {
-		hex = hex.split('').map(char => char + char).join('');
-	}
-
-	if (!/^[0-9A-Fa-f]{6}$/.test(hex)) {
-		return null;
-	}
-
-	const r = parseInt(hex.substring(0, 2), 16);
-	const g = parseInt(hex.substring(2, 4), 16);
-	const b = parseInt(hex.substring(4, 6), 16);
-
-	return [r,g,b];
-}
-
-
-function color_picker_setup() {
-    color_picker_preload();
-    // myPicker.position(48, 100);
+function color_picker_setup(){
+	color_picker_preload();
 }
 
 function color_picker_update() {
     penColor = hexToRgb(myPicker.value);
+    penSize = parseInt(thicknessSlider.value);
 }
 
 function color_picker_draw() {
-	fill(255,255,255);
-	textSize(14);
-	text("Color Picker: ",18,76);
+  fill(255); 
+  textSize(24); 
+  noStroke();
+  text("Color Picker:", 39, 99);
+  text("Thickness: " + penSize, 21,658);
 }
 
+function hexToRgb(hex) {
+	hex = hex.replace(/^#/, '');
+	if (hex.length === 3) hex = hex.split('').map(c => c + c).join('');
+	const r = parseInt(hex.substring(0, 2), 16);
+	const g = parseInt(hex.substring(2, 4), 16);
+	const b = parseInt(hex.substring(4, 6), 16);
+	return [r,g,b];
+}
