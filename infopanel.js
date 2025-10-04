@@ -29,7 +29,7 @@ function infopanel_draw() {
 	textFont(boldFont);
 	textSize(24);
 	image(forward,infopanel.x+padx/2, infopanel.y+padx*1-12, 16, 16);
-	text("    Info Panel",infopanel.x+padx, infopanel.y+padx);
+	text("    Info Panel",infopanel.x+padx, infopanel.y+padx/2);
 	textFont(normalFont);
     textSize(16);
 	text("    Image Name:Image1.jpeg",infopanel.x+padx/2, infopanel.y+padx*2-12);
