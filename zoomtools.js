@@ -27,18 +27,38 @@ function zoomtools_draw() {
 	image(zoomReset,windowWidth-100, windowHeight-90);
 
 	if(mouseDown){
-		if(detectCollision(mouseX, mouseY, 1, 1, (windowWidth-190), (windowHeight-90), 32, 32)) {
+		if(detectCollision(mouseX, mouseY, 1, 1, (windowWidth-180), (windowHeight-90), 32, 32)) {
 			click_zoomIn();
+		}
+		if(detectCollision(mouseX, mouseY, 1, 1, (windowWidth-140), (windowHeight-90), 32, 32)) {
+			click_zoomOut();
+		}
+		if(detectCollision(mouseX, mouseY, 1, 1, (windowWidth-100), (windowHeight-90), 32, 32)) {
+			click_zoomReset();
 		}
 	}
 }
 
 function click_zoomIn(){
 	zoom *= 1+zoom_step;
-
 	if(zoom > maxZoom) zoom = maxZoom;
-
 	viewer.viewport.zoomTo(zoom);
+	console.log("Zoomed in");
+}
+
+function click_zoomOut(){
+	zoom *= 1-zoom_step;
+	if(zoom > maxZoom) zoom = maxZoom;
+	viewer.viewport.zoomTo(zoom);
+	console.log("Zoomed Out");
+}
+
+function click_zoomReset(){
+	zoom = 1;
+	if(zoom > maxZoom) zoom = maxZoom;
+	if(zoom < minZoom) zoom = minZoom;
+	viewer.viewport.zoomTo(zoom);
+	console.log("Zoom Reset");
 }
 
 function detectCollision(x1, y1, w1, h1, x2, y2, w2, h2) {
@@ -50,10 +70,3 @@ function detectCollision(x1, y1, w1, h1, x2, y2, w2, h2) {
 
 
 
-function click_zoomOut(){
-	zoom *= 1-zoom_step;
-}
-
-function click_zoomReset(){
-	zoom = 1;
-}
