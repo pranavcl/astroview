@@ -19,7 +19,7 @@ function zoomtools_update() {
 
 
 function zoomtools_draw() {
-	fill(255,255,255);
+	fill(255,255,255,200);
 	rect(windowWidth-190,windowHeight-100,130,50);
 
 	image(zoomIn,windowWidth-180,windowHeight-90);
