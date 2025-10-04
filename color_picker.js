@@ -3,6 +3,7 @@ var myPicker;
 function color_picker_preload() {
     myPicker = document.createElement("input");
     myPicker.setAttribute("type", "color");
+	myPicker.value = "#FFFFFF";
     myPicker.style.position = "fixed";
     myPicker.style.top = "100px";
     myPicker.style.left = "47px";
