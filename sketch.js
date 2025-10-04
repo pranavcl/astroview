@@ -72,11 +72,14 @@ function setup() {
 	imageHeight = viewer.world.getItemAt(0).source.dimensions.y;
 
 	infopanel_setup();
+	topbar_setup();
 }
 
 function update() {
 	zoomtools_update();
 	infopanel_update();
+	topbar_update();
+
 	if(mouseDown && prevX != mouseX && prevY != mouseY && tool === "Hand") {
 		viewer.viewport.panBy(new OpenSeadragon.Point(((prevX - mouseX)/zoom)*0.001, ((prevY - mouseY)/zoom)*0.001));
 	}
@@ -158,6 +161,7 @@ function draw() {
 
 	zoomtools_draw();
 	infopanel_draw();
+	topbar_draw();
 }
 
 function windowResized() {
