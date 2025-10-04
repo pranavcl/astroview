@@ -67,6 +67,7 @@ function preload() {
 	mainFont = loadFont("/fonts/ARIAL.ttf");
 
 	zoomtools_preload();
+	color_picker_preload();
 }
 
 function setup() {
@@ -87,11 +88,13 @@ function setup() {
 
 	infopanel_setup();
 	topbar_setup();
+	color_picker_setup();
 }
 
 function update() {
 	zoomtools_update();
 	infopanel_update();
+	color_picker_update();
 	topbar_update();
 
 	if(mouseDown && prevX != mouseX && prevY != mouseY && tool === "Hand") {
@@ -221,6 +224,7 @@ function draw() {
 	zoomtools_draw();
 	infopanel_draw();
 	topbar_draw();
+	color_picker_draw();
 }
 
 function windowResized() {
