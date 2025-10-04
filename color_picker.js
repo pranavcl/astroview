@@ -1,4 +1,5 @@
 var myPicker;
+var myThickness;
 
 function color_picker_preload() {
     myPicker = document.createElement("input");
@@ -10,6 +11,10 @@ function color_picker_preload() {
     myPicker.style.zIndex = "300";
     document.body.appendChild(myPicker);
     return myPicker;
+}
+
+function pen_thickness() {
+	myThickness
 }
 
 function hexToRgb(hex) {
@@ -41,6 +46,8 @@ function color_picker_update() {
 }
 
 function color_picker_draw() {
-
+	fill(255,255,255);
+	textSize(14);
+	text("Color Picker: ",18,76);
 }
 
