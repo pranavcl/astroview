@@ -1,3 +1,7 @@
+function zoomtools_setup() {
+
+}
+
 function zoomtools_update() {
 
 }
