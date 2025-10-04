@@ -15,7 +15,5 @@ function topbar_draw() {
 	fill('Black');
 	text(mytext,(windowWidth/2)-(text_size/2),40);
 
-	
-
 	topbar_update()
 }
