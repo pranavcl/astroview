@@ -26,7 +26,7 @@ function zoomtools_update() {
 
 function zoomtools_draw() {
 	fill(255,255,255,200);
-	rect(windowWidth-190,windowHeight-100,130,50);
+	rect(windowWidth-190,windowHeight-100,130,50,5);
 
 	zoomTools.zoomIn.x = windowWidth-180;
 	zoomTools.zoomIn.y = windowHeight-90;
@@ -46,13 +46,13 @@ function zoomtools_draw() {
 			cursor(HAND);
 			fill(255,255,255,150);
 			noStroke();
-			square(zoomTools[i].x - 4, zoomTools[i].y - 4, 36);
+			square(zoomTools[i].x - 4, zoomTools[i].y - 4, 36,5);
 			zoomTools[i].hover = true;
 		}
 		if(tool == zoomTools[i].name) {
 			fill(255,255,255,100);
 			noStroke();
-			square(zoomTools[i].x - 4, zoomTools[i].y - 4, 36);
+			square(zoomTools[i].x - 4, zoomTools[i].y - 4, 36,5);
 		}
 		}
 	}
