@@ -314,7 +314,7 @@ function update() {
     for(var i=0; i < strokes.length; i++) {
       for(var j = 0; j < strokes[i].length; j++) {
         var pt = viewer.viewport.viewportToViewerElementCoordinates(new OpenSeadragon.Point(strokes[i][j][0], strokes[i][j][1]));
-        if(dist(mouseX, mouseY, pt.x, pt.y) < penSize*2) {
+        if(dist(mouseX, mouseY, pt.x, pt.y) < 20) {
           strokes.splice(i, 1);
           break;
         }
