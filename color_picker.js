@@ -26,7 +26,7 @@ function color_picker_preload() {
   myPicker.value = "#FFFFFF";
   myPicker.style.position = "fixed";
   myPicker.style.top = "270px";
-  myPicker.style.left = "1400px";
+  myPicker.style.right = "40px";
   myPicker.style.zIndex = "1000";
   document.body.appendChild(myPicker);
 
@@ -38,7 +38,7 @@ function color_picker_preload() {
   thicknessSlider.setAttribute("step", "0.1");
   thicknessSlider.style.position = "fixed";
   thicknessSlider.style.top = "380px";
-  thicknessSlider.style.left = "1330px";
+  thicknessSlider.style.right = "40px";
   thicknessSlider.style.zIndex = "1000";
   document.body.appendChild(thicknessSlider);
 
@@ -58,8 +58,8 @@ function color_picker_draw() {
   fill(255);
   textSize(15);
   noStroke();
-  text("Color Picker:", 1330, 240);
-  text("Thickness: " + penSize.toFixed(1), 1330, 350);
+  text("Color Picker:", windowWidth - 160, 240);
+  text("Thickness: " + penSize.toFixed(1), windowWidth - 170, 350);
 }
 
 function hexToRgb(hex) {
