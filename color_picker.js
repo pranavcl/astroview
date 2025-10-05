@@ -34,7 +34,7 @@ function color_picker_preload() {
   thicknessSlider.setAttribute("type", "range");
   thicknessSlider.setAttribute("min", "0.1");
   thicknessSlider.setAttribute("max", "1");
-  thicknessSlider.setAttribute("value", "0.5");
+  thicknessSlider.setAttribute("value", "0.1");
   thicknessSlider.setAttribute("step", "0.1");
   thicknessSlider.style.position = "fixed";
   thicknessSlider.style.top = "520px";
