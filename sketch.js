@@ -226,7 +226,7 @@ function preload() {
   images.rectangle = loadImage("/images/rectangle.png");
   images.move = loadImage("/images/move.png");
 
-  mainFont = loadFont("/fonts/ARIAL.ttf");
+  mainFont = loadFont("/fonts/ARIAL.TTF");
 
   zoomtools_preload();
   color_picker_preload();
