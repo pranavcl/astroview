@@ -108,8 +108,8 @@ function setup() {
 	fontSizeSlider.setAttribute("value", "10");
 	fontSizeSlider.setAttribute("step", "1");
 	fontSizeSlider.style.position = "fixed";
-	fontSizeSlider.style.top = "690px";
-	fontSizeSlider.style.right = "20px";
+	fontSizeSlider.style.top = "580px";
+	fontSizeSlider.style.right = "40px";
 	fontSizeSlider.style.zIndex = "1000";
 	document.body.appendChild(fontSizeSlider);
 
@@ -268,13 +268,13 @@ function draw() {
 		tools[i].hover = false;
 		if(detectCollision(mouseX, mouseY, 1, 1, tools[i].x, tools[i].y, toolWidth, toolHeight)) {
 			cursor(HAND);
-			fill(220);
+			fill(180);
 			noStroke();
 			circle(tools[i].x + toolWidth/2, tools[i].y + toolHeight/2, toolWidth*1.2);
 			tools[i].hover = true;
 		}
 		if(tool == tools[i].name) {
-			fill(220);
+			fill(180);
 			noStroke();
 			circle(tools[i].x + toolWidth/2, tools[i].y + toolHeight/2, toolWidth*1.2);
 		}
@@ -292,7 +292,7 @@ function draw() {
 	textSize(24);
 	noStroke();
 	textFont(fontstyle);
-	text("Font Size: " + fontSizeSlider.value, windowWidth - 200, 650);
+	text("Font Size: " + fontSizeSlider.value, windowWidth - 230, 540);
 
 	zoomtools_draw();
 	infopanel_draw();
