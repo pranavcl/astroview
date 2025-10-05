@@ -20,6 +20,7 @@ function topbar_setup() {
 
 function topbar_update() {
 	backArrow.hover = false;
+	shareBtn.hover = false;
 	var btns = [backArrow, shareBtn];
 
 	shareBtn.x = windowWidth - shareBtn.width*1.2;
@@ -33,7 +34,11 @@ function topbar_update() {
 
 	if(!mouseDown) return;
 	if(backArrow.hover) window.location.href = "/lobby.html";
-	if(shareBtn.hover) alert("Not implemented yet!");
+	if(shareBtn.hover) {
+		alert("Not implemented yet!");
+		mouseDown = false;
+		shareBtn.hover = false;
+	}
 }
 
 function topbar_draw() {
