@@ -25,7 +25,7 @@ function color_picker_preload() {
   myPicker.setAttribute("type", "color");
   myPicker.value = "#FFFFFF";
   myPicker.style.position = "fixed";
-  myPicker.style.top = "270px";
+  myPicker.style.top = "310px";
   myPicker.style.right = "40px";
   myPicker.style.zIndex = "1000";
   document.body.appendChild(myPicker);
@@ -58,7 +58,7 @@ function color_picker_draw() {
   fill(255);
   textSize(15);
   noStroke();
-  text("Color Picker:", windowWidth - 160, 240);
+  text("Color Picker:", windowWidth - 160, 290);
   text("Thickness: " + penSize.toFixed(1), windowWidth - 170, 350);
 }
 
