@@ -43,6 +43,8 @@ var imageHeight = 2468;
 var linex = 0;
 var liney = 0;
 
+var fontSizeSlider;
+
 const RA_TOP_LEFT = 10.684;         
 const DEC_TOP_LEFT = 41.269;        
 const RA_BOTTOM_RIGHT = 12.184;     
@@ -99,6 +101,18 @@ function setup() {
 	imageWidth = viewer.world.getItemAt(0).source.dimensions.x;
 	imageHeight = viewer.world.getItemAt(0).source.dimensions.y;
 
+	fontSizeSlider = document.createElement("input");
+	fontSizeSlider.setAttribute("type", "range");
+	fontSizeSlider.setAttribute("min", "4");
+	fontSizeSlider.setAttribute("max", "16");
+	fontSizeSlider.setAttribute("value", "10");
+	fontSizeSlider.setAttribute("step", "1");
+	fontSizeSlider.style.position = "fixed";
+	fontSizeSlider.style.top = "690px";
+	fontSizeSlider.style.right = "20px";
+	fontSizeSlider.style.zIndex = "1000";
+	document.body.appendChild(fontSizeSlider);
+
 	infopanel_setup();
 	topbar_setup();
 	color_picker_setup();
@@ -109,6 +123,8 @@ function update() {
 	infopanel_update();
 	color_picker_update();
 	topbar_update();
+
+	fontSize = fontSizeSlider.value;
 
 	if(mouseDown && prevX != mouseX && prevY != mouseY && tool === "Hand") {
 		viewer.viewport.panBy(new OpenSeadragon.Point(((prevX - mouseX)/zoom)*0.001, ((prevY - mouseY)/zoom)*0.001));
@@ -271,6 +287,12 @@ function draw() {
 	image(images.line, tools.line.x, tools.line.y);
 	image(images.rectangle, tools.rectangle.x, tools.rectangle.y);
 	image(images.ellipse, tools.ellipse.x, tools.ellipse.y);
+
+	fill(255);
+	textSize(24);
+	noStroke();
+	textFont(fontstyle);
+	text("Font Size: " + fontSizeSlider.value, windowWidth - 200, 650);
 
 	zoomtools_draw();
 	infopanel_draw();
