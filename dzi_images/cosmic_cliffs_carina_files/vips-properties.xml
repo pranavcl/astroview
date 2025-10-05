@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<image xmlns="http://www.vips.ecs.soton.ac.uk//dzsave" date="2025-10-05T08:50:47.663840+05:30" version="8.17.2">
+  <properties>
+    <property>
+      <name>width</name>
+      <value type="gint">14575</value>
+    </property>
+    <property>
+      <name>height</name>
+      <value type="gint">8441</value>
+    </property>
+    <property>
+      <name>bands</name>
+      <value type="gint">3</value>
+    </property>
+    <property>
+      <name>xoffset</name>
+      <value type="gint">0</value>
+    </property>
+    <property>
+      <name>yoffset</name>
+      <value type="gint">0</value>
+    </property>
+    <property>
+      <name>xres</name>
+      <value type="gdouble">11.811023622047244</value>
+    </property>
+    <property>
+      <name>yres</name>
+      <value type="gdouble">11.811023622047244</value>
+    </property>
+    <property>
+      <name>vips-loader</name>
+      <value type="VipsRefString">jpegload</value>
+    </property>
+    <property>
+      <name>resolution-unit</name>
+      <value type="VipsRefString">in</value>
+    </property>
+    <property>
+      <name>jpeg-multiscan</name>
+      <value type="gint">0</value>
+    </property>
+    <property>
+      <name>jpeg-chroma-subsample</name>
+      <value type="VipsRefString">4:4:4</value>
+    </property>
+    <property>
+      <name>exif-ifd0-ImageDescription</name>
+      <value type="VipsRefString">What looks much like craggy mountains on a moonlit evening is actually the edge of a nearby, young, star-forming region NGC 3324 in the Carina Nebula. Captured in infrared light by the Near-Infrared Camera (NIRCam) on the NASA/ESA/CSA James Webb Space Telescope, this image reveals previously obscured areas of star birth. Called the Cosmic Cliffs, the region is actually the edge of a gigantic, gaseous cavity within NGC 3324, roughly 7,600 light-years away. The cavernous area has been carved from the nebula by the intense ultraviolet radiation and stellar winds from extremely massive, hot, young stars located in the centre of the bubble, above the area shown in this image. The high-energy radiation from these stars is sculpting the nebula&#x23e2;&#x2380;&#x2399;s wall by slowly eroding it away. NIRCam &#x23e2;&#x2380;&#x2393; with its crisp resolution and unparalleled sensitivity &#x23e2;&#x2380;&#x2393; unveils hundreds of previously hidden stars, and even numerous background galaxies. Several prominent features in this image are described below.  The &#x23e2;&#x2380;&#x239c;steam&#x23e2;&#x2380;&#x239d; that appears to rise from the celestial &#x23e2;&#x2380;&#x239c;mountains&#x23e2;&#x2380;&#x239d; is actually hot, ionised gas and hot dust streaming away from the nebula due to intense, ultraviolet radiation. Dramatic pillars rise above the glowing wall of gas, resisting the blistering ultraviolet radiation from the young stars. Bubbles and cavities are being blown by the intense radiation and stellar winds of newborn stars. Protostellar jets and outflows, which appear in gold, shoot from dust-enshrouded, nascent stars. A &#x23e2;&#x2380;&#x239c;blow-out&#x23e2;&#x2380;&#x239d; erupts at the top-centre of the ridge, spewing gas and dust into the interstellar medium. An unusual &#x23e2;&#x2380;&#x239c;arch&#x23e2;&#x2380;&#x239d; appears, looking like a bent-over cylinder.  This period of very early star formation is difficult to capture because, for an individual star, it lasts only about 50,000 to 100,000 years &#x23e2;&#x2380;&#x2393; but Webb&#x23e2;&#x2380;&#x2399;s extreme sensitivity and exquisite spatial resolution have chronicled this rare event. Located roughly 7,600 light-years away, NGC 3324 was first catalogued by James Dunlop in 1826. Visible from the Southern Hemisphere, it is located at the northwest corner of the Carina Nebula (NGC 3372), which resides in the constellation Carina. The Carina Nebula is home to the Keyhole Nebula and the active, unstable supergiant star called Eta Carinae. NIRCam was built by a team at the University of Arizona and Lockheed Martin&#x23e2;&#x2380;&#x2399;s Advanced Technology Center. For a full array of Webb&#x23e2;&#x2380;&#x2399;s first images and spectra, including downloadable files, please visit: https://esawebb.org/initiatives/webbs-first-images/ (What looks much like craggy mountains on a moonlit evening is actually the edge of a nearby, young, star-forming region NGC 3324 in the Carina Nebula. Captured in infrared light by the Near-Infrared Camera (NIRCam) on the NASA/ESA/CSA James Webb Space Telescope, this image reveals previously obscured areas of star birth. Called the Cosmic Cliffs, the region is actually the edge of a gigantic, gaseous cavity within NGC 3324, roughly 7,600 light-years away. The cavernous area has been carved from the nebula by the intense ultraviolet radiation and stellar winds from extremely massive, hot, young stars located in the centre of the bubble, above the area shown in this image. The high-energy radiation from these stars is sculpting the nebula&#x23e2;&#x2380;&#x2399;s wall by slowly eroding it away. NIRCam &#x23e2;&#x2380;&#x2393; with its crisp resolution and unparalleled sensitivity &#x23e2;&#x2380;&#x2393; unveils hundreds of previously hidden stars, and even numerous background galaxies. Several prominent features in this image are described below.  The &#x23e2;&#x2380;&#x239c;steam&#x23e2;&#x2380;&#x239d; that appears to rise from the celestial &#x23e2;&#x2380;&#x239c;mountains&#x23e2;&#x2380;&#x239d; is actually hot, ionised gas and hot dust streaming away from the nebula due to intense, ultraviolet radiation. Dramatic pillars rise above the glowing wall of gas, resisting the blistering ultraviolet radiation from the young stars. Bubbles and cavities are being blown by the intense radiation and stellar winds of newborn stars. Protostellar jets and outflows, which appear in gold, shoot from dust-enshrouded, nascent stars. A &#x23e2;&#x2380;&#x239c;blow-out&#x23e2;&#x2380;&#x239d; erupts at the top-centre of the ridge, spewing gas and dust into the interstellar medium. An unusual &#x23e2;&#x2380;&#x239c;arch&#x23e2;&#x2380;&#x239d; appears, looking like a bent-over cylinder.  This period of very early star formation is difficult to capture because, for an individual star, it lasts only about 50,000 to 100,000 years &#x23e2;&#x2380;&#x2393; but Webb&#x23e2;&#x2380;&#x2399;s extreme sensitivity and exquisite spatial resolution have chronicled this rare event. Located roughly 7,600 light-years away, NGC 3324 was first catalogued by James Dunlop in 1826. Visible from the Southern Hemisphere, it is located at the northwest corner of the Carina Nebula (NGC 3372), which resides in the constellation Carina. The Carina Nebula is home to the Keyhole Nebula and the active, unstable supergiant star called Eta Carinae. NIRCam was built by a team at the University of Arizona and Lockheed Martin&#x23e2;&#x2380;&#x2399;s Advanced Technology Center. For a full array of Webb&#x23e2;&#x2380;&#x2399;s first images and spectra, including downloadable files, please visit: https://esawebb.org/initiatives/webbs-first-images/, ASCII, 2535 components, 2535 bytes)</value>
+    </property>
+    <property>
+      <name>exif-ifd0-Software</name>
+      <value type="VipsRefString">Adobe Photoshop 23.3 (Macintosh) (Adobe Photoshop 23.3 (Macintosh), ASCII, 33 components, 33 bytes)</value>
+    </property>
+    <property>
+      <name>exif-ifd0-DateTime</name>
+      <value type="VipsRefString">2022:07:05 11:22:11 (2022:07:05 11:22:11, ASCII, 20 components, 20 bytes)</value>
+    </property>
+    <property>
+      <name>exif-ifd0-XResolution</name>
+      <value type="VipsRefString">300000/1000 (300.000, Rational, 1 components, 8 bytes)</value>
+    </property>
+    <property>
+      <name>exif-ifd0-YResolution</name>
+      <value type="VipsRefString">300000/1000 (300.000, Rational, 1 components, 8 bytes)</value>
+    </property>
+    <property>
+      <name>exif-ifd0-ResolutionUnit</name>
+      <value type="VipsRefString">2 (Inch, Short, 1 components, 2 bytes)</value>
+    </property>
+    <property>
+      <name>exif-ifd2-ExifVersion</name>
+      <value type="VipsRefString">Exif Version 2.1 (Exif Version 2.1, Undefined, 4 components, 4 bytes)</value>
+    </property>
+    <property>
+      <name>exif-ifd2-FlashpixVersion</name>
+      <value type="VipsRefString">FlashPix Version 1.0 (FlashPix Version 1.0, Undefined, 4 components, 4 bytes)</value>
+    </property>
+    <property>
+      <name>exif-ifd2-ColorSpace</name>
+      <value type="VipsRefString">65535 (Uncalibrated, Short, 1 components, 2 bytes)</value>
+    </property>
+    <property>
+      <name>vips-sequential</name>
+      <value type="gint">1</value>
+    </property>
+  </properties>
+</image>

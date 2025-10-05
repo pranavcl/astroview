@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<image xmlns="http://www.vips.ecs.soton.ac.uk//dzsave" date="2025-10-05T08:53:13.084760+05:30" version="8.17.2">
+  <properties>
+    <property>
+      <name>width</name>
+      <value type="gint">13560</value>
+    </property>
+    <property>
+      <name>height</name>
+      <value type="gint">6551</value>
+    </property>
+    <property>
+      <name>bands</name>
+      <value type="gint">3</value>
+    </property>
+    <property>
+      <name>xoffset</name>
+      <value type="gint">0</value>
+    </property>
+    <property>
+      <name>yoffset</name>
+      <value type="gint">0</value>
+    </property>
+    <property>
+      <name>xres</name>
+      <value type="gdouble">2.8346456692913389</value>
+    </property>
+    <property>
+      <name>yres</name>
+      <value type="gdouble">2.8346456692913389</value>
+    </property>
+    <property>
+      <name>vips-loader</name>
+      <value type="VipsRefString">jpegload</value>
+    </property>
+    <property>
+      <name>resolution-unit</name>
+      <value type="VipsRefString">in</value>
+    </property>
+    <property>
+      <name>jpeg-multiscan</name>
+      <value type="gint">0</value>
+    </property>
+    <property>
+      <name>jpeg-chroma-subsample</name>
+      <value type="VipsRefString">4:4:4</value>
+    </property>
+    <property>
+      <name>exif-ifd0-ImageDescription</name>
+      <value type="VipsRefString">The NASA/ESA Hubble Space Telescope made the Pillars of Creation famous with its first image in 1995, but revisited the scene in 2014 to reveal a sharper, wider view in visible light, shown above at left. A new, near-infrared-light view from the NASA/ESA/CSA James Webb Space Telescope, at right, helps us peer through more of the dust in this star-forming region. The thick, dusty brown pillars are no longer as opaque and many more red stars that are still forming come into view. While the pillars of gas and dust seem darker and less penetrable in Hubble&#x23e2;&#x2380;&#x2399;s view, they appear more diaphanous in Webb&#x23e2;&#x2380;&#x2399;s. The background of this Hubble image is like a sunrise, beginning in yellows at the bottom, before transitioning to light green and deeper blues at the top. These colours highlight the thickness of the dust all around the pillars, which obscures many more stars in the overall region. In contrast, the background light in Webb&#x23e2;&#x2380;&#x2399;s image appears in blue hues, which highlights the hydrogen atoms, and reveals an abundance of stars spread across the scene. By penetrating the dusty pillars, Webb also allows us to identify stars that have recently &#x23e2;&#x2380;&#x2393; or are about to &#x23e2;&#x2380;&#x2393; burst free. Near-infrared light can penetrate thick dust clouds, allowing us to learn so much more about this incredible scene. Both views show us what is happening locally. Although Hubble highlights many more thick layers of dust and Webb shows more of the stars, neither shows us the deeper universe. Dust blocks the view in Hubble&#x23e2;&#x2380;&#x2399;s image, but the interstellar medium plays a major role in Webb&#x23e2;&#x2380;&#x2399;s. It acts like thick smoke or fog, preventing us from peering into the deeper universe, where countless galaxies exist. The pillars are a small region within the Eagle Nebula, a vast star-forming region 6,500 light-years from Earth. [Image Description: Two images of the Pillars of Creation, a star-forming region in space. At left, Hubble&#x23e2;&#x2380;&#x2399;s visible-light view shows darker pillars that rise from the bottom to the top of the screen, ending in three points. Webb&#x23e2;&#x2380;&#x2399;s near-infrared image at right shows the same pillars, but they are semi-opaque and rusty red-colored.] (The NASA/ESA Hubble Space Telescope made the Pillars of Creation famous with its first image in 1995, but revisited the scene in 2014 to reveal a sharper, wider view in visible light, shown above at left. A new, near-infrared-light view from the NASA/ESA/CSA James Webb Space Telescope, at right, helps us peer through more of the dust in this star-forming region. The thick, dusty brown pillars are no longer as opaque and many more red stars that are still forming come into view. While the pillars of gas and dust seem darker and less penetrable in Hubble&#x23e2;&#x2380;&#x2399;s view, they appear more diaphanous in Webb&#x23e2;&#x2380;&#x2399;s. The background of this Hubble image is like a sunrise, beginning in yellows at the bottom, before transitioning to light green and deeper blues at the top. These colours highlight the thickness of the dust all around the pillars, which obscures many more stars in the overall region. In contrast, the background light in Webb&#x23e2;&#x2380;&#x2399;s image appears in blue hues, which highlights the hydrogen atoms, and reveals an abundance of stars spread across the scene. By penetrating the dusty pillars, Webb also allows us to identify stars that have recently &#x23e2;&#x2380;&#x2393; or are about to &#x23e2;&#x2380;&#x2393; burst free. Near-infrared light can penetrate thick dust clouds, allowing us to learn so much more about this incredible scene. Both views show us what is happening locally. Although Hubble highlights many more thick layers of dust and Webb shows more of the stars, neither shows us the deeper universe. Dust blocks the view in Hubble&#x23e2;&#x2380;&#x2399;s image, but the interstellar medium plays a major role in Webb&#x23e2;&#x2380;&#x2399;s. It acts like thick smoke or fog, preventing us from peering into the deeper universe, where countless galaxies exist. The pillars are a small region within the Eagle Nebula, a vast star-forming region 6,500 light-years from Earth. [Image Description: Two images of the Pillars of Creation, a star-forming region in space. At left, Hubble&#x23e2;&#x2380;&#x2399;s visible-light view shows darker pillars that rise from the bottom to the top of the screen, ending in three points. Webb&#x23e2;&#x2380;&#x2399;s near-infrared image at right shows the same pillars, but they are semi-opaque and rusty red-colored.], ASCII, 2154 components, 2154 bytes)</value>
+    </property>
+    <property>
+      <name>exif-ifd0-Software</name>
+      <value type="VipsRefString">Adobe Photoshop CS6 (Macintosh) (Adobe Photoshop CS6 (Macintosh), ASCII, 32 components, 32 bytes)</value>
+    </property>
+    <property>
+      <name>exif-ifd0-DateTime</name>
+      <value type="VipsRefString">2022:10:11 13:10:24 (2022:10:11 13:10:24, ASCII, 20 components, 20 bytes)</value>
+    </property>
+    <property>
+      <name>exif-ifd0-Artist</name>
+      <value type="VipsRefString">Space Telescope Science Institute Office of Public Outreach (Space Telescope Science Institute Office of Public Outreach, ASCII, 60 components, 60 bytes)</value>
+    </property>
+    <property>
+      <name>exif-ifd0-Copyright</name>
+      <value type="VipsRefString">Public  (Public , ASCII, 7 components, 7 bytes)</value>
+    </property>
+    <property>
+      <name>exif-ifd0-XResolution</name>
+      <value type="VipsRefString">72/1 (72, Rational, 1 components, 8 bytes)</value>
+    </property>
+    <property>
+      <name>exif-ifd0-YResolution</name>
+      <value type="VipsRefString">72/1 (72, Rational, 1 components, 8 bytes)</value>
+    </property>
+    <property>
+      <name>exif-ifd0-ResolutionUnit</name>
+      <value type="VipsRefString">2 (Inch, Short, 1 components, 2 bytes)</value>
+    </property>
+    <property>
+      <name>exif-ifd2-ExifVersion</name>
+      <value type="VipsRefString">Exif Version 2.1 (Exif Version 2.1, Undefined, 4 components, 4 bytes)</value>
+    </property>
+    <property>
+      <name>exif-ifd2-FlashpixVersion</name>
+      <value type="VipsRefString">FlashPix Version 1.0 (FlashPix Version 1.0, Undefined, 4 components, 4 bytes)</value>
+    </property>
+    <property>
+      <name>exif-ifd2-ColorSpace</name>
+      <value type="VipsRefString">65535 (Uncalibrated, Short, 1 components, 2 bytes)</value>
+    </property>
+    <property>
+      <name>vips-sequential</name>
+      <value type="gint">1</value>
+    </property>
+  </properties>
+</image>

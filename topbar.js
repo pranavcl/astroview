@@ -33,7 +33,7 @@ function topbar_update() {
 	}
 
 	if(!mouseDown) return;
-	if(backArrow.hover) window.location.href = "/lobby.html";
+	if(backArrow.hover) window.location.href = "/";
 	if(shareBtn.hover) {
 		alert("Not implemented yet!");
 		mouseDown = false;
@@ -53,7 +53,7 @@ function topbar_draw() {
 
 	textFont(textstyle2);
 	textSize((windowWidth > 778) ? 28:14);
-	text("Messier 31 (Andromeda Galaxy)", 80, 10);
+	text(urlParams.get("name"), 80, 10);
 	textFont(fontstyle);
 
 	image(backArrow.image, backArrow.x, backArrow.y);
