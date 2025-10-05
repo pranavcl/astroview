@@ -13,10 +13,12 @@ tools.eraser = {hover: false, name:"Eraser"};
 tools.text = {hover: false, name:"Text"};
 tools.line = {hover: false, name:"Line"};
 tools.rectangle = {hover: false, name:"Rectangle"};
-tools.ellipse = {hover: false, name:"Ellipse"};
+tools.move = {hover: false, name:"Move"};
 
 var toolWidth = 32;
 var toolHeight = 32;
+
+var selectedTextBox = undefined;
 
 var panSpeed = 4;
 
@@ -77,7 +79,7 @@ function preload() {
 	images.text = loadImage("/images/text.png");
 	images.line = loadImage("/images/line.png");
 	images.rectangle = loadImage("/images/rectangle.png");
-	images.ellipse = loadImage("/images/ellipse.png");
+	images.move = loadImage("/images/move.png");
 
 	mainFont = loadFont("/fonts/ARIAL.ttf");
 
@@ -126,8 +128,11 @@ function update() {
 
 	fontSize = fontSizeSlider.value;
 
-	if(mouseDown && prevX != mouseX && prevY != mouseY && tool === "Hand") {
-		viewer.viewport.panBy(new OpenSeadragon.Point(((prevX - mouseX)/zoom)*0.001, ((prevY - mouseY)/zoom)*0.001));
+	if(mouseDown && prevX != mouseX && prevY != mouseY) {
+		var pt = new OpenSeadragon.Point(((prevX - mouseX)/zoom)*0.001, ((prevY - mouseY)/zoom)*0.001)
+		if(tool === "Hand")
+		viewer.viewport.panBy(pt);
+		else if(tool === "Move" && selectedTextBox != undefined) { texts[selectedTextBox].x -= pt.x*1.2; texts[selectedTextBox].y -= pt.y*1.2; }
 	}
 	prevX = mouseX;
 	prevY = mouseY;
@@ -149,8 +154,8 @@ function update() {
 	tools.line.y = tools.text.y + toolHeight*2;
 	tools.rectangle.x = tools.cursor.x;
 	tools.rectangle.y = tools.line.y + toolHeight*2;
-	tools.ellipse.x = tools.cursor.x;
-	tools.ellipse.y = tools.rectangle.y + toolHeight*2;
+	tools.move.x = tools.cursor.x;
+	tools.move.y = tools.rectangle.y + toolHeight*2;
 
 	if(mouseDown && tool === "Pen" && mouseX > 100) {
 		var pt = viewer.viewport.pointFromPixel(new OpenSeadragon.Point(mouseX, mouseY));
@@ -236,13 +241,18 @@ function draw() {
 		texts[i].w = bbox.w;
 		texts[i].h = bbox.h;
 
-		if(tool === "Text" && detectCollision(mouseX, mouseY, 1, 1, bbox.x, bbox.y, bbox.w, bbox.h)) {
+		var found = false;
+		if((tool === "Text" || tool === "Move") && detectCollision(mouseX, mouseY, 1, 1, bbox.x, bbox.y, bbox.w, bbox.h)) {
 			cursor(TEXT);
 			noFill();
 			stroke(0, 0, 255);
 			strokeWeight(1);
 			rect(bbox.x, bbox.y, bbox.w, bbox.h);
+			found = true;
+
+			if(mouseDown) selectedTextBox = i;
 		}
+		if(!found) selectedTextBox = undefined;
 	}
 	noStroke();
 
@@ -286,7 +296,7 @@ function draw() {
 	image(images.text, tools.text.x, tools.text.y);
 	image(images.line, tools.line.x, tools.line.y);
 	image(images.rectangle, tools.rectangle.x, tools.rectangle.y);
-	image(images.ellipse, tools.ellipse.x, tools.ellipse.y);
+	image(images.move, tools.move.x, tools.move.y);
 
 	fill(255);
 	textSize(24);
@@ -311,8 +321,7 @@ function windowResized() {
 function mouseClicked() {
 	for(var i in tools) {
 		if(tools[i].hover)
-		if(tools[i].name === "Ellipse") return alert("Not implemented yet!");
-		else tool = tools[i].name;
+		tool = tools[i].name;
 	}
 
 	if(tool === "Text" && mouseX > 100) {
