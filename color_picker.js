@@ -16,7 +16,7 @@ function draw() {
 
 function mouseDragged() {
   stroke(penColor);
-  strokeWeight(map(penSize, 0, 1, 1, 50)); 
+  strokeWeight(map(penSize, 0, 1, 1, 50));
   line(pmouseX, pmouseY, mouseX, mouseY);
 }
 
@@ -25,8 +25,8 @@ function color_picker_preload() {
   myPicker.setAttribute("type", "color");
   myPicker.value = "#FFFFFF";
   myPicker.style.position = "fixed";
-  myPicker.style.top = "142px";
-  myPicker.style.left = "50px";
+  myPicker.style.top = "270px";
+  myPicker.style.left = "1400px";
   myPicker.style.zIndex = "1000";
   document.body.appendChild(myPicker);
 
@@ -37,8 +37,8 @@ function color_picker_preload() {
   thicknessSlider.setAttribute("value", "0.5");
   thicknessSlider.setAttribute("step", "0.1");
   thicknessSlider.style.position = "fixed";
-  thicknessSlider.style.top = "690px";
-  thicknessSlider.style.left = "20px";
+  thicknessSlider.style.top = "380px";
+  thicknessSlider.style.left = "1330px";
   thicknessSlider.style.zIndex = "1000";
   document.body.appendChild(thicknessSlider);
 
@@ -51,15 +51,15 @@ function color_picker_setup() {
 
 function color_picker_update() {
   penColor = hexToRgb(myPicker.value);
-  penSize = parseFloat(thicknessSlider.value); 
+  penSize = parseFloat(thicknessSlider.value);
 }
 
 function color_picker_draw() {
   fill(255);
-  textSize(24);
+  textSize(15);
   noStroke();
-  text("Color Picker:", 39, 99);
-  text("Thickness: " + penSize.toFixed(1), 21, 658); 
+  text("Color Picker:", 1330, 240);
+  text("Thickness: " + penSize.toFixed(1), 1330, 350);
 }
 
 function hexToRgb(hex) {
