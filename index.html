@@ -1,23 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<title>Astroview</title>
-
-		<link rel="stylesheet" href="styles.css">
-
-	</head>
-
-	<body>
-		<div id="openseadragon1"></div>
-	</body>
-
-	<script src="p5.min.js"></script>
-	<script src="starfield.js"></script>
-	<script src="openseadragon.min.js"></script>
-	<script src="zoomtools.js"></script>
-	<script src="color_picker.js"></script>
-	<script src="infopanel.js"></script>
-	<script src="topbar.js"></script>
-	<script src="sketch.js"></script>
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASTROVIEW</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            min-height: 100vh;
+            width: 100vw;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #232526 0%, #414345 100%);
+            color: #fff;
+            font-family: Arial, sans-serif;
+            box-sizing: border-box;
+        }
+            .lobby-container {
+                background: rgba(30, 30, 40, 0.85);
+                padding: 40px 32px;
+                border-radius: 0;
+                box-shadow: none;
+                text-align: center;
+                min-height: 100vh;
+                width: 100vw;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+            h1 {
+                margin-bottom: 24px;
+                font-size: 2.5rem;
+                font-family: 'Space Mono', monospace;
+            }
+            .lobby-links {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                grid-template-rows: repeat(2, 1fr);
+                gap: 32px;
+                margin-top: 32px;
+                width: 80vw;
+                height: 60vh;
+                max-width: 1200px;
+                max-height: 800px;
+            }
+            .lobby-box {
+                width: 100%;
+                height: 100%;
+                aspect-ratio: 1/1;
+                min-width: 0;
+                min-height: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                background: #2d3142;
+                color: #fff;
+                padding: 32px 24px;
+                border-radius: 24px;
+                text-decoration: none;
+                font-size: 1.3rem;
+                font-family: 'Space Mono', monospace;
+                box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+                transition: background 0.2s, transform 0.2s;
+            }
+            .lobby-box:hover {
+                background: #4f5d75;
+                transform: translateY(-4px) scale(1.03);
+            }
+            .lobby-box {
+                background: #2d3142;
+                color: #fff;
+                padding: 32px 24px;
+                border-radius: 16px;
+                text-decoration: none;
+                font-size: 1.3rem;
+                font-family: 'Space Mono', monospace;
+                box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: background 0.2s, transform 0.2s;
+            }
+            .lobby-box:hover {
+                background: #4f5d75;
+                transform: translateY(-4px) scale(1.03);
+            }
+            .lobby-box-title {
+                font-size: 1.5rem;
+                font-weight: bold;
+                margin-bottom: 12px;
+            }
+            .lobby-box-desc {
+                font-size: 1rem;
+                opacity: 0.8;
+            }
+    </style>
+</head>
+<body>
+    <div id="starfield-canvas" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:0;"></div>
+    <div class="lobby-container" style="position:relative;z-index:1;">
+        <h1>ASTROVIEW</h1>
+        <div class="lobby-links">
+            <a class="lobby-box" href="viewer.html?img=m31_small&name=Messier%2031%20%28Andromeda%20Galaxy%29&size=9.29&dimensions=10552%20x%202468">
+                <div class="lobby-box-title">Messier 31 (Andromeda Galaxy)</div>
+                <div class="lobby-box-desc">Our vast galactic neighbor: the nearest major <br>spiral galaxy, seen in a stunning, high-resolution<br>mosaic.</div>
+            </a>
+            <a class="lobby-box" href="viewer.html?img=pillars_of_creation&name=Pillars%20of%20Creation&size=35.6&dimensions=13560%20x%206551">
+                <div class="lobby-box-title">Pillars of Creation</div>
+                <div class="lobby-box-desc">The iconic nursery where new stars are <br>being born from towering cosmic dust clouds.</div>
+            </a>
+            <a class="lobby-box" href="viewer.html?img=cosmic_cliffs_carina&name=Carina%20Nebula%20%28Cosmic%20Cliffs%29&size=17.0&dimensions=14575%20x%208441">
+                <div class="lobby-box-title">Carina Nebula (Cosmic Cliffs)</div>
+                <div class="lobby-box-desc">The majestic, glittering edge of a star-forming <br>gas cloud, sculpted by intense stellar winds.</div>
+            </a>
+            <a class="lobby-box" href="viewer.html?img=whirlpool_galaxy_m51&name=Whirlpool%20Galaxy%20%28M51%29&size=41.7&dimensions=11477%20x%207965">
+                <div class="lobby-box-title">Whirlpool Galaxy (M51)</div>
+                <div class="lobby-box-desc">A breathtaking view of a grand-design spiral galaxy<br> in the middle of a gravitational encounter.</div>
+            </a>
+        </div>
+    </div>
+</body>
+<script src="p5.min.js"></script>
+</html>
+<script>
+    let stars = [];
+    let starCanvas;
+    function setup() {
+        starCanvas = createCanvas(window.innerWidth, window.innerHeight);
+        starCanvas.parent('starfield-canvas');
+        starCanvas.position(0, 0);
+        starCanvas.style('z-index', '0');
+        for (let i = 0; i < 200; i++) {
+            stars.push({
+                x: random(-width, width),
+                y: random(-height, height),
+                z: random(width)
+            });
+        }
+    }
+    function draw() {
+        clear();
+        background(0, 0, 20, 255);
+        translate(width / 2, height / 2);
+        fill(255);
+        noStroke();
+        let speed = 5;
+        for (let star of stars) {
+            star.z -= speed;
+            if (star.z < 1) {
+                star.x = random(-width, width);
+                star.y = random(-height, height);
+                star.z = width;
+            }
+            let sx = (star.x / star.z) * width;
+            let sy = (star.y / star.z) * height;
+            let r = map(star.z, 0, width, 6, 0.5);
+            stroke(255);
+            strokeWeight(2);
+            fill(255);
+            ellipse(sx, sy, r);
+        }
+    }
+    function windowResized() {
+        resizeCanvas(window.innerWidth, window.innerHeight);
+    }
+</script>
 </html>

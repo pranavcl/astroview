@@ -52,10 +52,14 @@ const DEC_TOP_LEFT = 41.269;
 const RA_BOTTOM_RIGHT = 12.184;     
 const DEC_BOTTOM_RIGHT = 40.269;
 
+var urlParams = new URLSearchParams(window.location.search);
+var path;
+if(!urlParams.get("img")) path = "/dzi_images/m31_small.dzi";
+else path = "/dzi_images/" + urlParams.get("img") + ".dzi";
 var viewer = OpenSeadragon({
 	id: "openseadragon1",
 	prefixUrl: "/openseadragon/images/",
-	tileSources: "/dzi_images/m31_small.dzi",
+	tileSources: path,
 	showNavigator: false,
 	showZoomControl: false,
 	showHomeControl: false,

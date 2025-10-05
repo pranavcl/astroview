@@ -30,9 +30,9 @@ function infopanel_draw() {
 
 	textFont(textstyle2);
     textSize(13);
-	text("Image1.jpeg",infopanel.x+padx/2, infopanel.y+50);
-	text("9.7MB ",infopanel.x+padx/2, infopanel.y+70);
-	text("10552 x 2468 pixels",infopanel.x+padx/2, infopanel.y+90);
+	text(`${urlParams.get('img')}.jpeg`,infopanel.x+padx/2, infopanel.y+50);
+	text(`${urlParams.get('size')}MB `,infopanel.x+padx/2, infopanel.y+70);
+	text(`${urlParams.get('dimensions')} pixels`,infopanel.x+padx/2, infopanel.y+90);
 
 	infopanel_update();
 }
