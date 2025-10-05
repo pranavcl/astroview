@@ -14,6 +14,7 @@ This project is a submission for the [**NASA 2025 Space Apps Challenge**](https:
 - HTML
 - CSS
 - JavaScript
+- [p5.js](https://p5js.org/)
 - [OpenSeadragon](https://openseadragon.github.io/)
 - [libvips](https://github.com/libvips/libvips) 
 - Figma
