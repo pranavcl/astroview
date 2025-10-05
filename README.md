@@ -2,7 +2,7 @@
 
 This project is a submission for the [**NASA 2025 Space Apps Challenge**](https://www.spaceappschallenge.org/2025/). Made by team **ImageInators**.
 
-✨ **ASTROVIEW** is a hub for **anyone** to explore and view splendid images of Space, Earth and Planets captured by satellites from [NASA](https://nasa.gov) and other Space Agencies. It can view images in **full resolution**, **zoom and pan** to **discover new patterns** and features, **annotate with pens and shapes of various thicknesses and colors** and just a click. A simple and intuitive experience to experience the marvelous universe we live in, simply from our browser. 🌐
+✨ **ASTROVIEW** is a hub for **anyone** to explore and view splendid images of Space, Earth and Planets captured by satellites from [NASA](https://nasa.gov) and other Space Agencies. It can view images in **full resolution**, **zoom and pan** to **discover new patterns** and features, **annotate with pens and shapes of various thicknesses and colors** with just a click. A simple and intuitive experience to experience the marvelous universe we live in, simply from our browser. 🌐
 
 ![Screenshot of the annotation features](screenshot1.png)
 ![Screenshot of the landing page](screenshot2.png)
